@@ -10,7 +10,7 @@
 
 ===
 
-######
+###### 기록
 
 https://www.notion.so/Rust-Programming-8ae7b50f400b4a99a3753bd2041a5cf9
 
