@@ -5,13 +5,13 @@
 > `rust programming`을 study 하면서 기록한 자료입니다.
 > 아래 사이트의 Stepbystep 과정으로 스터디를 진행하고 로그를 남깁니다.
 
-- [Rust learning site](https://rinthel.github.io/rust-lang-book-ko/foreword.html)
+- ref : [Rust learning site](https://rinthel.github.io/rust-lang-book-ko/foreword.html)
 
 ---
 
 ## 기록
 
-### [Notion Rust Programming](https://www.notion.so/Rust-Programming-8ae7b50f400b4a99a3753bd2041a5cf9)
+### ["Notion" Rust Programming](https://www.notion.so/Rust-Programming-8ae7b50f400b4a99a3753bd2041a5cf9)
 
 [1.3 Hello Cargo](https://www.notion.so/1-3-Hello-Cargo-267f1cac69c34a1c9ef94e839380f9a4)
 
