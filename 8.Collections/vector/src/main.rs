@@ -1,10 +1,7 @@
 mod lib;
-
-use lib::collection;
+use lib::example::collection::hash;
 
 fn main() {
-    
     println!("Hello, world!");
-    collection::vector_practice::excute_i32();
-    collection::vector_practice::excute_enum();
+    hash::execute_update();
 }
