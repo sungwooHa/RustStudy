@@ -1,5 +1,5 @@
 pub mod exam{
-    pub mod exam_1{
+    pub mod exam_2{
         use std::io;
 
         pub fn input_string() -> String{
