@@ -5,6 +5,22 @@ pub trait Summarizable {
     }
 }
 
+pub fn notify<T: Summarizable>(item : T){
+    println!("Breaking  news! {}", item.summary());
+}
+
+pub fn largest<T : PartialOrd + Copy>(list: &[T]) -> T{
+    let mut largest = list[0];
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+
 pub struct NewsArticle{
     pub headline : String,
     pub location : String,
