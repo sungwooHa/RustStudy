@@ -1,41 +1,15 @@
 
-
-fn get_largest(list : &[i32]) -> i32{
-    let mut largest = list[0];
-
-    for &item in list.iter() {
-        if item > largest {
-            largest = item;
-        }
-    }
-
-    largest
-}
-
-fn get_smallest(list :&[i32]) -> i32{
-    let mut smallest = list[0];
-
-    for &item in list.iter() {
-        if item < smallest {
-            smallest = item;
-        }
-    }
-
-    smallest
+struct Point<T, U>{
+    x : T,
+    y : U,
 }
 
 fn main() {
-    println!("Hello, world!");
+    let both_integer = Point { x: 5, y: 10 };
+    let both_float = Point { x: 1.0, y: 4.0 };
+    let integer_and_float = Point { x: 5, y: 4.0 };
 
-    let number = vec![10,20,30,40,50];
-
-    let largest = number.iter().max().unwrap();
-    let smallest = number.iter().min().unwrap();
-
-    println!("{} is largest number ", largest);
-    println!("{} is smallest number ", smallest);
-
-    println!("{} is largest_custom number ", get_largest(&number));
-    println!("{} is smallest_custom number ", get_smallest(&number));
-
+    println!("x {}, y {}", both_integer.x, both_integer.y);
+    println!("x {}, y {}", both_float.x, both_float.y);
+    println!("x {}, y {}", integer_and_float.x, integer_and_float.y);
 }
