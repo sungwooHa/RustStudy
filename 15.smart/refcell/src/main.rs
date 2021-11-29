@@ -1,3 +1,4 @@
 fn main() {
-    println!("Hello World");
+    let x = 5;
+    let mut y = x;
 }
