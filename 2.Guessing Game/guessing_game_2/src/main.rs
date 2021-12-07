@@ -76,7 +76,7 @@ fn main() {
         let secret_number = match get_random_range_from_user() {
             Ok(random_range) => {
                 println!("min value : {}, max value : {}", random_range.min_value, random_range.max_value);
-                rand::thread_rng().gen_range(random_range.min_value..random_range.max_value)
+                rand::thread_rng().gen_range(random_range.min_value..random_range.max_value + 1)
             },
             Err(err) => {
                 eprintln!("ERROR Range : {}", err);
