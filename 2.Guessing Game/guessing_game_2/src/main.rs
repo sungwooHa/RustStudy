@@ -7,7 +7,7 @@ struct RandomRange{
    max_value : u32,
 }
 
-fn input_range() -> Result<RandomRange, &'static str>{
+fn get_random_range_from_user() -> Result<RandomRange, &'static str>{
     println!("please input range (min, max)");
 
     let mut range = String::new();
@@ -43,13 +43,13 @@ fn input_range() -> Result<RandomRange, &'static str>{
 
 fn main() {
     loop{
-        let secret_number = match input_range() {
+        let secret_number = match get_random_range_from_user() {
             Ok(random_range) => {
                 println!("min value : {}, max value : {}", random_range.min_value, random_range.max_value);
                 rand::thread_rng().gen_range(random_range.min_value..random_range.max_value)
             },
             Err(err) => {
-                eprintln!("Application error : {}", err);
+                eprintln!("invalid range of random : {}", err);
                 continue
             }
         };
@@ -61,14 +61,21 @@ fn main() {
 
             let mut guess = String::new();
             let guess = match io::stdin().read_line(&mut guess){
-                Ok(_) => guess.trim(),
+                Ok(_) => guess,
                 Err(_) => {
                     println!("Failed to read line");
                     continue;
                 }
             };
             
-            let guess = guess.parse::<u32>().unwrap();
+            let guess : u32 = match guess.trim().parse(){
+                Ok(num) => num,
+                Err(_) => {
+                    println!("It isn't digit number");
+                    continue;
+                }
+            };
+
             println!("You guessed : {}", guess);
 
             match guess.cmp(&secret_number) {
