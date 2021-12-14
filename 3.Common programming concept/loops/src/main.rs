@@ -1,20 +1,15 @@
-
-fn plus_one(x: i32) -> i32 
-{
-    x + 1
-}
-
-
 fn main() 
 {
-    let mut tmp_number = 1;
-
-    while tmp_number != 10
-    {
-        println!("result of function : {}", plus_one(tmp_number));
-        tmp_number += 1;
+    'outer: loop {
+        'inner1 : loop{
+            'inner2 : loop{
+                break 'inner1;
+            }
+            println!("inner2 done");
+            break;
+        }
+        println!("inner1 done");
+        break;
     }
-
-
-    println!("Hello, world!");
+    println!("outer done");
 }
