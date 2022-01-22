@@ -1,6 +1,3 @@
-
-
-
 fn main() {
     
     // let length : u32 = 50;
@@ -13,11 +10,11 @@ fn main() {
     // );
 
     // //tuple
-    // let rectangle_measurement = (50,30);
-    // println!(
-    //     "The area of the rectangle is {} square pixels.",
-    //     area_tuple(rectangle_measurement)
-    // );
+    let rectangle_measurement = (50,30);
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        area_tuple(rectangle_measurement)
+    );
 
     //structure
     let rectangle_instance = Rectangle {length : 50, width : 30};
@@ -31,7 +28,24 @@ fn main() {
     println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
     println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
 
-    
+    fn areav(rect : &Rectangle) -> u32{
+        rect.length * rect.width
+    }
+
+    println!(" {} ", areav(&Rectangle{length : 50, width : 30}));
+
+    println!(
+        "{:?} test",  rect1 // :? 는 println!에게 Debug 출력 포맷 사용 명시
+    );
+    println!(
+        "{:?} test",  rect2 // :? 는 println!에게 Debug 출력 포맷 사용 명시
+    );  println!(
+        "{:?} test",  rect3 // :? 는 println!에게 Debug 출력 포맷 사용 명시
+    );
+
+    dbg!(&rect1);
+    dbg!(&rect2);
+    dbg!(&rect3);
 }
 
 // //function
@@ -59,8 +73,8 @@ impl Rectangle{
 //     rectangle.length * rectangle.width
 // }
 
-// //tuple
-// fn area_tuple(dimension : (u32, u32)) -> u32{
-    //     dimension.0* dimension.1
-//
+//tuple
+fn area_tuple(key_for_tuple : (u32, u32)) -> u32{
+    key_for_tuple.0* key_for_tuple.1
+}
 
