@@ -1,99 +1,116 @@
+use std::collections::HashSet;
 
-pub struct Game{
+struct Log{
+    Strike : u32,
+    Ball : u32,
+    Guess : String,
+}
 
-    word : String,
-    game_log : Vec<log>,
-    max_round : u32,
-
-    enum Log{
-        Strike(u32),
-        Ball(u32),
-        Guess(String),
-    }
-
-    impl Log{
-
-        pub fn new(Strkie : u32, Ball : u32, Guess : &String) -> Log {
-            Log {
+impl Log{
+    pub fn new(Strike : u32, Ball : u32, Guess : &String) -> Log {
+        Log {
                 Strike,
                 Ball,
-                Guess : Guess.clone(),
-            }
+                Guess : Guess.clone()
         }
+    }
+    pub fn print_log(&self){
+        println!("Guess : {}, Strike : {}, Ball : {}", self.Guess, self.Strike, self.Ball);
+    }
+}    
 
-        pub fn print_log(){
-            println!("Guess : {}, Strike : {}, Ball : {}", &Guess, Strike, Ball);
-        }
-    }    
+pub struct Game{
+    word : String,
+    game_log : Vec<Log>,
+    max_round : u32,
 }
+
+static MSG_GOOD_GAME : &'static str =  "nice, good job";
+static MSG_WRONG_LENGTH : &'static str =  "wrong word, different length";
+static MSG_NO_CHANCE : &'static str = "FAIL. you don't have any chance";
+static MSG_STRIKE_IS : &'static str =  "strike : ";
+static MSG_BALL_IS : &'static str =  "ball : ";
 
 impl Game{
     pub fn new(word : String, round : u32) -> Game{
         Game{
             word,
-            max_round = u32,
+            max_round : round,
+            game_log : Vec::new()
         }
     }
 
-    pub fn Try(&mut self, guess_word : &String) -> Result<bool, &str>{
+    pub fn Try(&mut self, guess_word : &String) -> Result<bool, &str> {
         //strike, ball
         //log ++
-        if(!Verify())
-            panic!("wrong word, different length");
-
+        if self.Verify(guess_word) == false {
+            panic!(MSG_WRONG_LENGTH);
+        }
             
-        let count_strike = match CountStrike(guess_word){
-            Some(v) =>{
-                if v == word.len(){
-                    //game end, success
+        let numb_strike = match self.CountStrike(guess_word){
+            Some(strike) =>{
+                if strike == self.word.len() as u32 {
+                    return Ok(true);
                 }
-                else 
-                    v
+                
+                strike
             }
             None => 0,
         };
 
-        let count_ball = match CountBall(guess_word){
+        let numb_ball = match self.CountBall(guess_word){
             Some(v) => v,
             None => 0,
         };
 
-        let log = Log::new(count_strike, count_ball, guess_word));
+        let log = Log::new(numb_strike, numb_ball, guess_word);
         log.print_log();
         self.game_log.push(log);
 
-        self.game_log.len >= max_round ? {
+        if self.game_log.len() as u32 >= self.max_round {
             //fail
-        } : {
-            //keep
+            panic!(MSG_NO_CHANCE)
+        } 
+        else {
+            //Keep
+            Ok(false)
         }
     }
 
-    fn Verify(&self.word, guess_word : &String) -> bool{
-        
-        return self.word.len() == guess_word.len()
+    fn Verify(&self, guess_word : &String ) -> bool {
+        self.word.len() == guess_word.len()
     }
 
-    fn CountStrike(&self.word, guess_word : &String) -> Option<u32>{
+    fn CountStrike(&self, guess_word : &String) -> Option<u32>{
+        let charWord : Vec<char> = self.word.chars().collect();
+        let guessWord : Vec<char> = guess_word.chars().collect();
 
+        let mut strikeCount = 0;
+        for idx in 0..charWord.len(){
+            if charWord[idx] == guessWord[idx] {
+                strikeCount += 1;
+            }
+        }
+
+        match strikeCount{
+            0 => None,
+            _ => Some(strikeCount)
+        }
     }
 
-    fn CountBall(&self.word, guess_word : &String) -> Option<u32>{
+    fn CountBall(&self, guess_word : &String) -> Option<u32>{
+        let charWordSet : HashSet<_> = self.word.chars().collect();
+        let guessWordSet : HashSet<_> = guess_word.chars().collect();
 
+        let ballCount = charWordSet.difference(&guessWordSet).count() as u32;
+
+        match self.CountStrike(guess_word){
+            None => Some(ballCount),
+            Some(strikeCount) => Some(ballCount - strikeCount),
+        }
     }
 
-    pub fn GetAnswer(self) -> &str{
-        return &word;
-    }
-}
-
-
-pub mod word{
-
-    fn get_word_pool() -> Result<String> {
-        
-    }
-    pub mod generator{
-        
+    pub fn GetAnswer(&self) -> &str{
+        return &self.word;
     }
 }
