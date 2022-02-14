@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'oop_state_pattern'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=oop_state_pattern",
+                    "--package=oop_state_pattern"
+                ],
+                "filter": {
+                    "name": "oop_state_pattern",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'oop_state_pattern'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=oop_state_pattern",
+                    "--package=oop_state_pattern"
+                ],
+                "filter": {
+                    "name": "oop_state_pattern",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
