@@ -1,0 +1,64 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'draw_trait'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=draw_trait"
+                ],
+                "filter": {
+                    "name": "draw_trait",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'draw_trait'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=draw_trait",
+                    "--package=draw_trait"
+                ],
+                "filter": {
+                    "name": "draw_trait",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'draw_trait'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=draw_trait",
+                    "--package=draw_trait"
+                ],
+                "filter": {
+                    "name": "draw_trait",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
